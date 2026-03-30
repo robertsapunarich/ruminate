@@ -1,0 +1,31 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "ruminate",
+  // Set this to today's date
+  "compatibility_date": "2026-03-19",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "./src/index.ts",
+  "assets": {
+    "directory": "../app/dist/",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/auth/*"],
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "ruminate",
+      // Replace with your actual database ID after running:
+      // wrangler d1 create ruminate
+      "database_id": "placeholder",
+    },
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "CACHE",
+      // Replace with your actual KV namespace ID after running:
+      // wrangler kv namespace create CACHE
+      "id": "placeholder",
+    },
+  ],
+}

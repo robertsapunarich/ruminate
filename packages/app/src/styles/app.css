@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Ruminate — Brutalist / Pinboard aesthetic
+ * Dense, fast, no-nonsense.
+ */
+
+@layer base {
+  html {
+    font-family:
+      "SF Mono",
+      Monaco,
+      Inconsolata,
+      "Fira Mono",
+      "Droid Sans Mono",
+      "Source Code Pro",
+      monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #111;
+    background: #fff;
+  }
+
+  a {
+    color: #0000ff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Dense table/list styles */
+  .entry-row,
+  .bookmark-row {
+    @apply border-b border-border py-1.5 px-0;
+  }
+
+  .entry-row:hover,
+  .bookmark-row:hover {
+    @apply bg-gray-50;
+  }
+
+  /* Tags */
+  .tag {
+    @apply inline-block text-xs px-1 py-0.5 border border-border text-muted mr-1;
+  }
+
+  .tag:hover {
+    @apply text-accent border-accent;
+  }
+
+  /* Buttons — minimal */
+  .btn {
+    @apply inline-block px-2 py-1 border border-black text-xs cursor-pointer bg-white;
+  }
+
+  .btn:hover {
+    @apply bg-black text-white;
+  }
+
+  /* Nav links */
+  .nav-link {
+    @apply text-muted text-sm;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    @apply text-black;
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "ruminate",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @ruminate/api dev",
+    "dev:app": "pnpm --filter @ruminate/app dev",
+    "build": "pnpm --filter @ruminate/shared build && pnpm --filter @ruminate/app build",
+    "deploy": "pnpm run build && pnpm --filter @ruminate/api deploy",
+    "db:generate": "pnpm --filter @ruminate/api db:generate",
+    "db:migrate:local": "pnpm --filter @ruminate/api db:migrate:local",
+    "db:migrate:remote": "pnpm --filter @ruminate/api db:migrate:remote",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
+  }
+}
