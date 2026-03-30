@@ -5,7 +5,7 @@ dist/
 *.local
 
 # Build outputs
-packages/web/src/routeTree.gen.ts
+packages/app/src/routeTree.gen.ts
 
 # OS
 .DS_Store
