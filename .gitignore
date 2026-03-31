@@ -3,6 +3,7 @@ dist/
 .wrangler/
 .dev.vars
 *.local
+*.tsbuildinfo
 
 # Build outputs
 packages/app/src/routeTree.gen.ts
