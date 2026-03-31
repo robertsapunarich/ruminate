@@ -3,7 +3,16 @@
   "name": "ruminate-app",
   "compatibility_date": "2026-03-19",
   "compatibility_flags": ["nodejs_compat"],
+  "main": "./src/worker.ts",
   "assets": {
     "directory": "dist",
+    "binding": "ASSETS",
+    "not_found_handling": "none"
   },
+  "services": [
+    {
+      "binding": "API",
+      "service": "ruminate-api"
+    }
+  ]
 }
