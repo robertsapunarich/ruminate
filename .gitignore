@@ -25,3 +25,6 @@ Thumbs.db
 
 # D1 local database
 .mf/
+
+# docs
+papercuts.md

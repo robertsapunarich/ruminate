@@ -14,18 +14,14 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "ruminate",
-      // Replace with your actual database ID after running:
-      // wrangler d1 create ruminate
-      "database_id": "placeholder",
+      "database_name": "prod-d1-ruminate",
+      "database_id": "f48c1415-3e1f-4392-b667-a3304b729c7f",
     },
   ],
   "kv_namespaces": [
     {
       "binding": "CACHE",
-      // Replace with your actual KV namespace ID after running:
-      // wrangler kv namespace create CACHE
-      "id": "placeholder",
+      "id": "bcacf2ac923e496e993ecbd96c65ac3f",
     },
   ],
 }
