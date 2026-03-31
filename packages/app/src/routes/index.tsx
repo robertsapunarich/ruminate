@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { api } from "../api/client";
 import { EntryRow } from "../components/EntryRow";
 import type { Entry, Feed } from "@ruminate/shared";
@@ -18,6 +18,7 @@ function EntriesPage() {
     unread?: boolean;
     starred?: boolean;
   }>({ unread: true });
+  const feedDetailsRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
     loadData();
@@ -82,7 +83,9 @@ function EntriesPage() {
         <div className="flex gap-3 text-xs">
           <button
             onClick={() => setFilter({ unread: true })}
-            className={filter.unread && !filter.starred ? "font-bold" : "text-muted"}
+            className={
+              filter.unread && !filter.starred ? "font-bold" : "text-muted"
+            }
           >
             unread
           </button>
@@ -94,7 +97,11 @@ function EntriesPage() {
           </button>
           <button
             onClick={() => setFilter({})}
-            className={!filter.unread && !filter.starred && !filter.feedId ? "font-bold" : "text-muted"}
+            className={
+              !filter.unread && !filter.starred && !filter.feedId
+                ? "font-bold"
+                : "text-muted"
+            }
           >
             all
           </button>
@@ -125,16 +132,21 @@ function EntriesPage() {
 
       {/* Feed sidebar (inline, Pinboard-style) */}
       {feeds.length > 0 && (
-        <details className="mb-4 text-xs">
+        <details ref={feedDetailsRef} className="mb-4 text-xs">
           <summary className="cursor-pointer text-muted">
             feeds ({feeds.length})
           </summary>
-          <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1">
+          <div className="mt-2 flex flex-col gap-1">
             {feeds.map((feed) => (
               <button
                 key={feed.id}
-                onClick={() => setFilter({ feedId: feed.id, unread: true })}
-                className={`text-xs ${filter.feedId === feed.id ? "font-bold text-black" : "text-muted hover:text-black"}`}
+                onClick={() => {
+                  setFilter({ feedId: feed.id, unread: true });
+                  if (feedDetailsRef.current) {
+                    feedDetailsRef.current.open = false;
+                  }
+                }}
+                className={`text-xs text-left ${filter.feedId === feed.id ? "font-bold text-black" : "text-muted hover:text-black"}`}
               >
                 {feed.title}
               </button>
