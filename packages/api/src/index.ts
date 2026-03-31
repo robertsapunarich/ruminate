@@ -8,6 +8,7 @@ import entryRoutes from "./routes/entries";
 import bookmarkRoutes from "./routes/bookmarks";
 import tagRoutes from "./routes/tags";
 import searchRoutes from "./routes/search";
+import importExportRoutes from "./routes/import-export";
 import type { AppContext } from "./lib/types";
 
 const app = new Hono<AppContext>();
@@ -34,6 +35,7 @@ app.route("/api/entries", entryRoutes);
 app.route("/api/bookmarks", bookmarkRoutes);
 app.route("/api/tags", tagRoutes);
 app.route("/api/search", searchRoutes);
+app.route("/api", importExportRoutes);
 
 // --- Health check ---
 app.get("/api/health", (c) => {

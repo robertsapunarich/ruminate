@@ -12,6 +12,7 @@ import type {
   PaginatedResponse,
   RefreshStatus,
   SearchResult,
+  ImportResult,
   User,
 } from "@ruminate/shared";
 
@@ -165,5 +166,26 @@ export const api = {
         `/api/search?${searchParams}`,
       );
     },
+  },
+
+  // --- Import / Export ---
+
+  importExport: {
+    importOpml: async (file: File) => {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await fetch("/api/import/opml", {
+        method: "POST",
+        body: formData,
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({ error: res.statusText }));
+        throw new Error(
+          (body as { error?: string }).error ?? `HTTP ${res.status}`,
+        );
+      }
+      return res.json() as Promise<ImportResult>;
+    },
+    exportOpml: () => "/api/export/opml",
   },
 };
